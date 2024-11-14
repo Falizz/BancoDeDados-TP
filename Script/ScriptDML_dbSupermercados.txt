@@ -1,0 +1,78 @@
+USE Supermercado;
+
+-- Tabela Fornecedor
+INSERT INTO Fornecedor (FornecedorNome, FornecedorTelefone, FornecedorEndereco) VALUES
+('Fornecedor A', '1234-5678', 'Rua das Flores, 123'),
+('Fornecedor B', '2345-6789', 'Avenida Brasil, 456'),
+('Fornecedor C', '3456-7890', 'Rua Central, 789'),
+('Fornecedor D', '4567-8901', 'Praça do Sol, 101'),
+('Fornecedor E', '5678-9012', 'Rua do Mercado, 202');
+
+-- Tabela Funcao
+INSERT INTO Funcao (FuncaoNome) VALUES
+('Gerente'),
+('Caixa'),
+('Estoque'),
+('Vendedor'),
+('Atendente');
+
+-- Tabela Funcionario
+INSERT INTO Funcionario (FuncionarioNome, Salario) VALUES
+('João Silva', 2500.00),
+('Maria Oliveira', 3000.00),
+('Carlos Pereira', 2200.00),
+('Ana Costa', 2800.00),
+('Lucas Santos', 3500.00);
+
+-- Tabela Produto
+INSERT INTO Produto (CodigoBarras, FornecedorCodigo, ProdutoNome, PrecoCusto, PrecoVenda) VALUES
+(123456789, 1, 'Arroz', 15.50, 20.00),
+(234567890, 2, 'Feijão', 10.00, 15.00),
+(345678901, 3, 'Macarrão', 5.00, 7.00),
+(456789012, 4, 'Óleo', 8.00, 12.00),
+(567890123, 5, 'Açúcar', 4.50, 6.00);
+
+-- Tabela Cliente
+INSERT INTO Cliente (ClienteNome, ClienteCPF, ClienteEndereco, ClienteTelefone) VALUES
+('Pedro Almeida', '123.456.789-00', 'Rua do Limoeiro, 345', '99876-5432'),
+('Julia Martins', '234.567.890-11', 'Avenida dos Pássaros, 789', '98765-4321'),
+('Carlos Souza', '345.678.901-22', 'Rua das Acácias, 101', '97654-3210'),
+('Fernanda Lima', '456.789.012-33', 'Rua do Sol, 202', '96543-2109'),
+('Roberto Ferreira', '567.890.123-44', 'Praça da Paz, 303', '95432-1098');
+
+-- Tabela Nota Fiscal
+INSERT INTO NotaFiscal (CodigoBarras, ClienteCadastro, NotaValor, NotaPagamento, NotaData) VALUES
+(123456789, 1, 20.00, 'Cartão de Crédito', '2024-11-01'),
+(234567890, 2, 15.00, 'Dinheiro', '2024-11-02'),
+(345678901, 3, 7.00, 'Pix', '2024-11-03'),
+(456789012, 4, 12.00, 'Cartão de Débito', '2024-11-04'),
+(567890123, 5, 6.00, 'Dinheiro', '2024-11-05');
+
+-- Tabela Equipe
+INSERT INTO Equipe (CodFuncao, CodFuncionario) VALUES
+(1, 2),
+(3, 1),
+(2, 5),
+(4, 3),
+(5, 4);
+
+-- Mostrar os dados da tabela Fornecedor
+-- SELECT * FROM Fornecedor;
+
+-- Mostrar os dados da tabela Funcao
+-- SELECT * FROM Funcao;
+
+-- Mostrar os dados da tabela Funcionario
+-- SELECT * FROM Funcionario;
+
+-- Mostrar os dados da tabela Produto
+-- SELECT * FROM Produto;
+
+-- Mostrar os dados da tabela Cliente
+-- SELECT * FROM Cliente;
+
+-- Mostrar os dados da tabela NotaFiscal
+-- SELECT * FROM NotaFiscal;
+
+-- Mostrar os dados da tabela Equipe
+-- SELECT * FROM Equipe;

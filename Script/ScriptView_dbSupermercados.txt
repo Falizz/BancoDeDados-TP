@@ -1,0 +1,30 @@
+-- Função, nome e salário de cada funcionário
+SELECT Funcao.FuncaoNome, Funcionario.FuncionarioNome, Funcionario.Salario
+FROM Funcao
+JOIN Equipe ON Funcao.CodFuncao = Equipe.CodFuncao
+JOIN Funcionario ON Equipe.CodFuncionario = Funcionario.CodFuncionario;
+
+-- Todas as compras feitas por um cliente específico (ClienteCPF = '123.456.789-00')
+SELECT NotaFiscal.CodigoNota, NotaFiscal.NotaValor, NotaFiscal.NotaPagamento, NotaFiscal.NotaData, Produto.ProdutoNome, Produto.PrecoVenda
+FROM NotaFiscal
+JOIN Produto ON NotaFiscal.CodigoBarras = Produto.CodigoBarras
+JOIN Cliente ON NotaFiscal.ClienteCadastro = Cliente.ClienteCadastro
+WHERE Cliente.ClienteCPF = '123.456.789-00';
+
+-- Quantas vezes determinado produto apareceu em alguma nota (exemplo com CodigoBarras = 123456789)
+SELECT Produto.ProdutoNome, COUNT(NotaFiscal.CodigoNota) AS QuantidadeVendas
+FROM NotaFiscal
+JOIN Produto ON NotaFiscal.CodigoBarras = Produto.CodigoBarras
+WHERE NotaFiscal.CodigoBarras = 123456789;
+
+-- Produtos fornecidos pelo mesmo fornecedor (exemplo com FornecedorCodigo = 1)
+SELECT Produto.ProdutoNome, Produto.PrecoCusto, Produto.PrecoVenda, Fornecedor.FornecedorNome
+FROM Produto
+JOIN Fornecedor ON Produto.FornecedorCodigo = Fornecedor.FornecedorCodigo
+WHERE Produto.FornecedorCodigo = 1;
+
+-- Produtos que não foram vendidos (não aparecem em nenhuma nota fiscal)
+SELECT Produto.ProdutoNome
+FROM Produto
+LEFT JOIN NotaFiscal ON Produto.CodigoBarras = NotaFiscal.CodigoBarras
+WHERE NotaFiscal.CodigoBarras IS NULL;

@@ -1,0 +1,75 @@
+CREATE DATABASE Supermercado;
+
+USE Supermercado;
+
+-- Tabela Fornecedor
+CREATE TABLE Fornecedor (
+    FornecedorCodigo INT AUTO_INCREMENT,
+    FornecedorNome VARCHAR(255) NOT NULL,
+    FornecedorTelefone VARCHAR(20) NOT NULL,
+    FornecedorEndereco VARCHAR(255) NOT NULL,
+    PRIMARY KEY (FornecedorCodigo)
+);
+
+-- Tabela Funcao
+CREATE TABLE Funcao (
+    CodFuncao INT AUTO_INCREMENT,
+    FuncaoNome VARCHAR(30) NOT NULL,
+    PRIMARY KEY (CodFuncao)
+);
+
+-- Tabela Funcionario
+CREATE TABLE Funcionario (
+    CodFuncionario INT AUTO_INCREMENT,
+    FuncionarioNome VARCHAR(255) NOT NULL,
+    Salario DECIMAL(11, 2) NOT NULL,
+    PRIMARY KEY (CodFuncionario)
+);
+
+-- Tabela Produto
+CREATE TABLE Produto (
+    CodigoBarras BIGINT,
+    FornecedorCodigo INT NOT NULL,
+    ProdutoNome VARCHAR(255) NOT NULL,
+    PrecoCusto DECIMAL(11,2) NOT NULL,
+    PrecoVenda DECIMAL(11,2) NOT NULL,
+    PRIMARY KEY (CodigoBarras),
+    FOREIGN KEY (FornecedorCodigo) REFERENCES Fornecedor(FornecedorCodigo)
+);
+
+-- Tabela Cliente
+CREATE TABLE Cliente (
+    ClienteCadastro INT AUTO_INCREMENT,
+    ClienteNome VARCHAR(255) NOT NULL,
+    ClienteCPF VARCHAR(20) NOT NULL,
+    ClienteEndereco VARCHAR(255),
+    ClienteTelefone VARCHAR(20),
+    PRIMARY KEY (ClienteCadastro)
+);
+
+-- Tabela Nota Fiscal
+CREATE TABLE NotaFiscal (
+    CodigoNota BIGINT AUTO_INCREMENT,
+    CodigoBarras BIGINT NOT NULL,
+    ClienteCadastro INT NOT NULL,
+    NotaValor DECIMAL(11,2) NOT NULL,
+    NotaPagamento VARCHAR(50) NOT NULL,
+    NotaData DATE,
+    PRIMARY KEY (CodigoNota, CodigoBarras),
+    FOREIGN KEY (CodigoBarras) REFERENCES Produto(CodigoBarras),
+    FOREIGN KEY (ClienteCadastro) REFERENCES Cliente(ClienteCadastro)
+);
+
+-- Tabela Equipe
+CREATE TABLE Equipe (
+    CodEquipe INT AUTO_INCREMENT,
+    CodFuncao INT NOT NULL,
+    CodFuncionario INT NOT NULL,
+    PRIMARY KEY (CodEquipe),
+    FOREIGN KEY (CodFuncao) REFERENCES Funcao(CodFuncao),
+    FOREIGN KEY (CodFuncionario) REFERENCES Funcionario(CodFuncionario)
+);
+
+-- SHOW DATABASES;
+
+SHOW TABLES;
